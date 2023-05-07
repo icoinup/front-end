@@ -4,7 +4,7 @@ import {Mobile, PC} from './ReactResposive';
 import Header from './Header.js';
 import Button from './Style';
 import {StyledDiv} from './Style';
-import { collection, getDocs } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {app,db} from "./firebase";
 import { useLocation } from "react-router-dom"
 
@@ -31,12 +31,37 @@ const Readdata = (props) => {
     return(
         <div className="">
             {datas.map((item) => (
-                <p> {item.using.toString()} {item.time}</p>
+                <p> {item.using.toString()} {Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(item.time)}</p>
               ))}
         </div>
     );
 }
 
+const Updatedata = (props) => {
+    let currentTimestamp = Date.now()
+    console.log(currentTimestamp); // get current timestamp
+    const location = useLocation();
+    console.log(location.state.RC)
+	console.log(location.state.floor)
+    let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp)
+    const UpdateTime = async (e) => {
+        e.preventDefault();  
+       
+        try {
+            const washingmachine = doc(db, location.state.RC+location.state.floor, "3");
+            const docRef = await updateDoc(washingmachine, {
+               time: currentTimestamp
+              });
+            console.log("Document written with ID: ", );
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
+    return(
+       <button onClick={UpdateTime}>Addtime</button>
+    );
+
+}
 const Main = (props) => {
 	return (
 		<>
@@ -46,7 +71,7 @@ const Main = (props) => {
 			<StyledDiv style={{background:"white"}}>
 			<h3>안녕하세요. 메인페이지 입니다.APP</h3>
 			<ul>
-				<Link to="/QR"><Button>Start</Button></Link>
+				<Link to="/QR"><Button >Start</Button></Link>
 
 			</ul>
             </StyledDiv>
@@ -63,6 +88,7 @@ const Main = (props) => {
 			
             </StyledDiv>
 			<Readdata />
+            <Updatedata />
         </PC>
 		</>
 	);
