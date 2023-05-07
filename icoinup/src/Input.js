@@ -8,7 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 
 
 const Selection = () => {
-    const RC = [" ","bethel", "Grace", "Vision", "etc"];
+    const RC = [" ","Bethel", "Grace", "Vision", "Rothem","Hayongjo","Carmichael","Creation","Papyrus"];
     const [SelectedRC, setSelectedRC] = useState("");
     const floor = [" ", "1F", "2F", "3F", "4F", "5F"];
     const [SelectedFloor, setSelectedFloor] = useState("");
@@ -73,10 +73,10 @@ const Input = (props) => {
                 
                 <ul>
                     
-                    <Link to="/Main"><Button>Next</Button></Link>
+                <Selection />
                 </ul><br />
                 </StyledDiv>
-               <BackDiv> <Selection /></BackDiv>
+              
 
             </PC>
             
