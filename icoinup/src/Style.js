@@ -15,7 +15,7 @@ export const StyledButton = styled.button`
   width: 190px;
 `;
 export const StyledDiv = styled.div`
-  display: flex;
+  
   justify-content: center;
   align-items: center;
   background: #CBE6F9;
@@ -23,6 +23,7 @@ export const StyledDiv = styled.div`
   height: 100vh;
   color:#37447E;
   white-space: pre-line;
+  display: flex;
 `;
 
 export const BackDiv = styled.div`
