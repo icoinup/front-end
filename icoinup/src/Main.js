@@ -7,6 +7,7 @@ import {StyledDiv} from './Style';
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {app,db} from "./firebase";
 import { useLocation } from "react-router-dom"
+import Timer from './Timer';
 
 const Readdata = (props) => {
     const [datas, setDatas] = useState([]);
@@ -55,6 +56,7 @@ const Readdata = (props) => {
     );
 }
 
+
 const Main = (props) => {
 	return (
 		<>
@@ -62,7 +64,8 @@ const Main = (props) => {
         <Mobile>
             <Header/>
 			<StyledDiv style={{background:"white"}}>
-			<h3>안녕하세요. 메인페이지 입니다.APP</h3>
+			<div><h3>안녕하세요. 메인페이지 입니다.APP</h3></div>
+			<Timer></Timer>
 			<ul>
 				<Link to="/QR"><Button >Start</Button></Link>
 
@@ -73,7 +76,8 @@ const Main = (props) => {
         <PC>
             <Header/>
             <StyledDiv style={{background:"white"}}>
-			<h3>안녕하세요. 메인페이지 입니다.PC</h3><br></br>
+			<h3>안녕하세요. 메인페이지 입니다.PC</h3>
+			<Timer></Timer>
 			<ul>
 				<Link to="/QR"><Button>Start</Button></Link>
 			
