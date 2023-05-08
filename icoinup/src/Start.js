@@ -9,9 +9,8 @@ const Start = (props) => {
 		<>
             <Mobile>
             <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up PC</h3><br/>
+                <h3 style={{color:"white",fontSize:"50px"}}>Icoin Up PC</h3><br/>
                 <ul>
-                    
                     <Link to="/Input"><Button>Join</Button></Link>
                 </ul>
             </StyledDiv>
@@ -20,7 +19,6 @@ const Start = (props) => {
                 <StyledDiv>
                 <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up PC</h3><br/>
                 <ul>
-                    
                     <Link to="/Input"><Button>Join</Button></Link>
                 </ul>
                 </StyledDiv>
