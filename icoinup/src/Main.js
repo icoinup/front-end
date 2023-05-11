@@ -66,8 +66,9 @@ const Main = (props) => {
         <Mobile>
             <Header/>
 			<StyledDiv style={{background:"white"}}>
-			<div><h3>안녕하세요. 메인페이지 입니다.APP</h3></div>
+			<div style={{width:"100%",height:"0px" }}></div>
 			<Timer></Timer>
+			<div style={{width:"100%",height:"0px" }}></div>
 			<ul>
 				<Link to="/QR"><Button >Start</Button></Link>
 
@@ -78,8 +79,9 @@ const Main = (props) => {
         <PC>
             <Header/>
             <StyledDiv style={{background:"white"}}>
-			<h3>안녕하세요. 메인페이지 입니다.PC</h3>
+			<div style={{width:"100%",height:"0px" }}></div>
 			<Timer></Timer>
+			<div style={{width:"100%",height:"0px" }}></div>
 			<ul>
             <Link to={`/QR`} ><Button>Start</Button></Link>
 			
