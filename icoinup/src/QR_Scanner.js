@@ -40,7 +40,8 @@ class QR_Scanner extends Component {
           try { 
               const washingmachine = doc(db, RC+floor, String(data));
               const docRef = await updateDoc(washingmachine, {
-                 time: currentTimestamp
+                 time: currentTimestamp,
+                 using: true
                 });
               console.log("Document written with ID: ", );
               
@@ -54,7 +55,7 @@ class QR_Scanner extends Component {
       
       
       await UpdateTime();
-      sleep(5);
+      sleep(3);
       alert('계산이 완료되었습니다!');
       window.location = "../Input"; 
       }

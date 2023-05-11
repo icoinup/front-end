@@ -28,11 +28,13 @@ const Readdata = (props) => {
             })
        
     }
+    
     const UpdateTime = async (e) => {
+        
         e.preventDefault();  
         currentTimestamp = Date.now()
         try {
-            const washingmachine = doc(db, RC+floor, "1");
+            const washingmachine = doc(db, RC+floor, "4");
             const docRef = await updateDoc(washingmachine, {
                time: currentTimestamp
               });
@@ -50,7 +52,7 @@ const Readdata = (props) => {
             {datas.map((item,index) => (
                 <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { hour: '2-digit',minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
               ))}
-              <button onClick={UpdateTime}>Addtime</button>
+              {/* <button onClick={UpdateTime}>Addtime</button>  */}
         </div>
         
     );
@@ -86,9 +88,9 @@ const Main = (props) => {
             <Link to={`/QR`} ><Button>Start</Button></Link>
 			
 			</ul>
-			
+            <Readdata />
             </StyledDiv>
-			<Readdata />
+			
         </PC>
 		</>
 	);
