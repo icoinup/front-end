@@ -1,28 +1,66 @@
-import React, { Component } from "react";
+import React, { Component ,useEffect} from "react";
 import QrReader from "modern-react-qr-reader";
 import { Link } from "react-router-dom";
-import Main from './Main';
+import {RC, floor} from './Main';
 import './qr_user.css';
-
+import {app,db} from "./firebase";
+import { useLocation } from "react-router-dom"
+import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+function sleep(sec) {
+  return new Promise(resolve => setTimeout(resolve, sec * 1000));
+} 
 class QR_Scanner extends Component {
+  
   constructor(props) {
     super(props);
 
     this.state = {
-      result: "No result"
+      result: "No result",
+      
     };
 
     this.handleError = this.handleError.bind(this);
     this.handleScan = this.handleScan.bind(this);
+    
   }
-
-  handleScan = (data) => {
+  
+  
+  handleScan = async (data) => {
+    
     if (data) {
+      console.log(RC+floor)
       this.setState({
         result: data
       });
+      
+      if(parseInt(data)>0){
+        const UpdateTime = async (e) => {
+            
+          let currentTimestamp = Date.now()
+          try { 
+              const washingmachine = doc(db, RC+floor, String(data));
+              const docRef = await updateDoc(washingmachine, {
+                 time: currentTimestamp
+                });
+              console.log("Document written with ID: ", );
+              
+              
+            } catch (e) {
+              console.error("Error adding document: ", e);
+            }
+      }
+        
+        
+      
+      
+      await UpdateTime();
+      sleep(5);
       alert('계산이 완료되었습니다!');
-      window.location = "../Main"; 
+      window.location = "../Input"; 
+      }
+      else{
+        alert('유효하지 않는 QR');
+      }
     }
   };
 

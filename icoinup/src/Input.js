@@ -6,25 +6,29 @@ import {StyledDiv, BackDiv} from './Style';
 import {app,db} from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+var RC = ""
+var floor = ""
 
 const Selection = () => {
-    const RC = [" ","Bethel", "Grace", "Vision", "Rothem","Hayongjo","Carmichael","Creation","Papyrus"];
+    const RCs = [" ","Bethel", "Grace", "Vision", "Rothem","Hayongjo","Carmichael","Creation","Papyrus"];
     const [SelectedRC, setSelectedRC] = useState("");
-    const floor = [" ", "1F", "2F", "3F", "4F", "5F"];
+    const floors= [" ", "1F", "2F", "3F", "4F", "5F","6F"];
     const [SelectedFloor, setSelectedFloor] = useState("");
     const handleSelectFloor = (e) => {
         setSelectedFloor(e.target.value);
+        floor= e.target.value;
       };
 
       const handleSelectRC = (e) => {
         setSelectedRC(e.target.value);
+      RC = e.target.value;
       };
       return (
         <div className="Selections">
           <h1>Select your RC</h1>
           <div>
             <select onChange={handleSelectRC} value={SelectedRC}>
-              {RC.map((item) => (
+              {RCs.map((item) => (
                 <option value={item} key={item}>
                   {item}
                 </option>
@@ -32,7 +36,7 @@ const Selection = () => {
             </select>
             <hr />
             <select onChange={handleSelectFloor} value={SelectedFloor}>
-              {floor.map((item) => (
+              {floors.map((item) => (
                 <option value={item} key={item}>
                   {item}
                 </option>
@@ -83,5 +87,9 @@ const Input = (props) => {
 		</>
 	);
 };
+
+
+
+export {RC, floor}
 
 export default Input;
