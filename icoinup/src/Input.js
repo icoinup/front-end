@@ -60,25 +60,17 @@ const Input = (props) => {
 	return (
 		<>
         <Mobile>
-        <StyledDiv>
+          <StyledDiv>
                 <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up</h3><br/>
-                
-                <ul>
-                    
-                    <Link to="/Main"><Button>Next</Button></Link>
-                </ul><br />
-                </StyledDiv>
-               <BackDiv> <Selection /></BackDiv>
+                    <Selection />    
+            </StyledDiv>
+
             </Mobile>
             
             <PC>
                 <StyledDiv>
                 <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up</h3><br/>
-                
-                <ul>
-                    
                 <Selection />
-                </ul><br />
                 </StyledDiv>
               
 
