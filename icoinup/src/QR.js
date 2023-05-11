@@ -21,7 +21,6 @@ const QR = (props) => {
                 <QR_Scanner/>
             </StyledDiv>
 			
-			
         </PC>
 		</>
 	);

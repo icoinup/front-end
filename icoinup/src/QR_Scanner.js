@@ -6,6 +6,8 @@ import './qr_user.css';
 import {app,db} from "./firebase";
 import { useLocation } from "react-router-dom"
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+import {StyledDiv, BackDiv} from './Style';
+import { AiFillCamera } from "react-icons/ai";
 function sleep(sec) {
   return new Promise(resolve => setTimeout(resolve, sec * 1000));
 } 
@@ -50,9 +52,6 @@ class QR_Scanner extends Component {
             }
       }
         
-        
-      
-      
       await UpdateTime();
       sleep(5);
       alert('계산이 완료되었습니다!');
@@ -74,7 +73,8 @@ class QR_Scanner extends Component {
       width: 320,
     }
     return (
-      <div>
+      <StyledDiv style={{background:"white"}}>
+        <h3>QR코드를 스캔해주세요. (카메라 연동)</h3><br/>
         <QrReader
           delay={300}
           facingMode={"environment"}
@@ -83,14 +83,9 @@ class QR_Scanner extends Component {
           className="qr-scanner-video" 
           style={previewStyle}
         />
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        {/* <div id="loginAlert" onClick={() => alert('계산이 완료되었습니다!')}>계산이 완료되었습니다</div> */}
-        <p>{this.state.result}</p>
-        {/* <Link to="../Main">Main</Link> */}
-      </div>
+        <br/><br/><br/><br/><br/>
+        <AiFillCamera style={{fontSize: "5em"}}/>
+      </StyledDiv>
     );
   }
 }
