@@ -3,26 +3,28 @@ import { Link } from 'react-router-dom';
 import {Mobile, PC} from './ReactResposive';
 import Button from './Style';
 import {StyledDiv} from './Style';
+import AppLogo from './images/Logo/Logo.png';
 
 const Start = (props) => {
 	return (
 		<>
             <Mobile>
             <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up PC</h3><br/>
-                <ul>
-                    
+                <div style={{width:"100%",height:"0px" }}></div> 
+                <img src={AppLogo} />
+                <div style={{width:"100%",height:"100px" }}></div> 
                     <Link to="/Input"><Button>Join</Button></Link>
-                </ul>
+
             </StyledDiv>
             </Mobile>
             <PC>
                 <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up PC</h3><br/>
-                <ul>
-                    
-                    <Link to="/Input"><Button>Join</Button></Link>
-                </ul>
+                <div style={{width:"100%",height:"0px" }}></div> 
+                <img src={AppLogo} />
+                <div style={{width:"100%",height:"50px" }}></div>
+
+                <Link to="/Input"><Button>Join</Button></Link>
+
                 </StyledDiv>
             </PC>
 		</>
