@@ -11,13 +11,19 @@ const getSeconds = (time) => {
     return String(seconds);
   }
 };
-
+function sleep(sec) {
+  return new Promise(resolve => setTimeout(resolve, sec * 1000));
+} 
 const Timer = () => {
   const [time, setTime] = useState(30); // Remaining time in seconds
   const [datas, setDatas] = useState([]);
+  var url = window.location.pathname
+  let rcfloor = url.split("/");
+  var coll = rcfloor[rcfloor.length-1]
+  
   const fetchPost = async () => {
        
-    await getDocs(collection(db, RC+floor))
+    await getDocs(collection(db, coll))
         .then((querySnapshot)=>{               
             const newData = querySnapshot.docs
                 .map((doc,index) => ({...doc.data(), id:doc.id }));
@@ -41,10 +47,11 @@ const UpdateBool = async (e) => {
   
   
   try {
-      const washingmachine = doc(db, RC+floor, "1");
+      const washingmachine = doc(db, coll, "1");
       const docRef = await updateDoc(washingmachine, {
          using: false
         });
+        window.location.reload();
       console.log("Document written with ID: ", );
     } catch (e) {
       console.error("Error adding document: ", e);

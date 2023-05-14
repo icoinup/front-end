@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useParams} from 'react-router-dom';
 import {Mobile, PC} from './ReactResposive';
 import Header from './Header.js';
 import Button from './Style';
 import {StyledDiv} from './Style';
-import {RC, floor} from './Input';
+import {Input, RC, floor} from './Input';
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {app,db} from "./firebase";
 import { useLocation } from "react-router-dom"
 import Timer from './Timer';
 
+  
 const Readdata = (props) => {
+    
     const [datas, setDatas] = useState([]);
-	
+	var currentusing = [];
     let currentTimestamp = Date.now()
+    var url = window.location.pathname
+    let rcfloor = url.split("/");
+    var coll = rcfloor[rcfloor.length-1]
+    
     console.log(currentTimestamp); // get current timestamp
     let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp)
     const fetchPost = async () => {
-       
-        await getDocs(collection(db, RC+floor))
+        currentusing = new Array(4).fill(false);
+        await getDocs(collection(db, coll))
             .then((querySnapshot)=>{               
                 const newData = querySnapshot.docs
                     .map((doc,index) => ({...doc.data(), id:doc.id }));
@@ -26,31 +32,40 @@ const Readdata = (props) => {
                          
                 console.log(datas, newData);
             })
-       
-    }
+        }
     
-    const UpdateTime = async (e) => {
+    
+    const UpdateBool = async (value,e) => {
         
-        e.preventDefault();  
+        
         currentTimestamp = Date.now()
         try {
-            const washingmachine = doc(db, RC+floor, "4");
+            const washingmachine = doc(db, coll, String(value));
             const docRef = await updateDoc(washingmachine, {
-               time: currentTimestamp
+               using : true
               });
             console.log("Document written with ID: ", );
+            window.location.reload();
           } catch (e) {
             console.error("Error adding document: ", e);
           }
     }
     useEffect(()=>{
-        fetchPost();
+        fetchPost()
+        
     }, [])
 
     return(
         <div className="">
             {datas.map((item,index) => (
                 <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { hour: '2-digit',minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
+             
+              
+              ))}
+              {datas.map((item,index) => (
+                item.using ? <button key={index} onClick={(e)=>UpdateBool(index+1,e)}>Using</button> : <button key={index} onClick={(e)=>UpdateBool(index+1,e)}>Not</button>
+                
+              
               ))}
               {/* <button onClick={UpdateTime}>Addtime</button>  */}
         </div>
@@ -59,9 +74,8 @@ const Readdata = (props) => {
 }
 
 
-const Main = (props) => {
-    
-    
+const Main = ({match,props}) => {
+    // console.log(props.children)
 	return (
 		<>
         
@@ -88,7 +102,7 @@ const Main = (props) => {
             <Link to={`/QR`} ><Button>Start</Button></Link>
 			
 			</ul>
-            <Readdata />
+            <Readdata name="" />
             </StyledDiv>
 			
         </PC>

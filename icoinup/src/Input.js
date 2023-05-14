@@ -48,9 +48,9 @@ const Selection = () => {
             </p>
           </div>
           <ul>
-                    
-          <Link to={`/Main`} state={{ floor: SelectedFloor, RC: SelectedRC }} ><Button>Next</Button></Link>
-                </ul><br />
+          
+          <Link to={{pathname:  `/Main/${SelectedRC+SelectedFloor}`, state: { floor: SelectedFloor, RC: SelectedRC}}}><Button>Next</Button></Link>
+          </ul>
         </div>
       );
 }

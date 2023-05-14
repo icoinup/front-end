@@ -14,7 +14,7 @@ const App = () => {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Start/>}></Route>
-					<Route path="/Main/*" element={<Main />}></Route>
+					<Route path="/Main/:RCid" element={<Main />}></Route>
 					<Route path="/Start/*" element={<Start />}></Route>
           <Route path="/Input/*" element={<Input />}></Route>
           <Route path="/QR/*" element={<QR />}></Route>

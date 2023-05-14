@@ -1,6 +1,6 @@
 import React, { Component ,useEffect} from "react";
 import QrReader from "modern-react-qr-reader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {RC, floor} from './Main';
 import './qr_user.css';
 import {app,db} from "./firebase";
@@ -11,6 +11,7 @@ import { AiFillCamera } from "react-icons/ai";
 function sleep(sec) {
   return new Promise(resolve => setTimeout(resolve, sec * 1000));
 } 
+
 class QR_Scanner extends Component {
   
   constructor(props) {
@@ -31,6 +32,10 @@ class QR_Scanner extends Component {
     
     if (data) {
       console.log(RC+floor)
+      // const navigate = useNavigate();
+      // const onCancel = () =>{
+      //   navigate(-1);
+      // }
       this.setState({
         result: data
       });
@@ -56,7 +61,8 @@ class QR_Scanner extends Component {
       await UpdateTime();
       sleep(3);
       alert('계산이 완료되었습니다!');
-      window.location = "../Input"; 
+      // onCancel();
+      window.history.go(-1);
       }
       else{
         alert('유효하지 않는 QR');
