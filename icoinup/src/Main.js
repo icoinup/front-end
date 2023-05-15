@@ -9,8 +9,10 @@ import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {app,db} from "./firebase";
 import { useLocation } from "react-router-dom"
 import Timer from './Timer';
+import Blue from "./images/WMBlue.png";
+import Red from "./images/WMRed.png";
+import Status from "./Status";
 
-  
 const Readdata = (props) => {
     
     const [datas, setDatas] = useState([]);
@@ -64,8 +66,6 @@ const Readdata = (props) => {
               ))}
               {datas.map((item,index) => (
                 item.using ? <button key={index} onClick={(e)=>UpdateBool(index+1,e)}>Using</button> : <button key={index} onClick={(e)=>UpdateBool(index+1,e)}>Not</button>
-                
-              
               ))}
               {/* <button onClick={UpdateTime}>Addtime</button>  */}
         </div>
@@ -82,28 +82,26 @@ const Main = ({match,props}) => {
         <Mobile>
             <Header/>
 			<StyledDiv style={{background:"white"}}>
-			<div style={{width:"100%",height:"0px" }}></div>
-			<Timer></Timer>
-			<div style={{width:"100%",height:"0px" }}></div>
-			<ul>
-				<Link to="/QR"><Button >Start</Button></Link>
-
-			</ul>
+                <Timer></Timer>
+                <div style={{width:"100%",height:"30px" }}></div>
+                <Status></Status>
+                <div style={{width:"100%",height:"30px" }}></div>
+                <Link to="/QR"><Button >Start</Button></Link>
+                <div style={{width:"100%",height:"30px" }}></div>
+                
             </StyledDiv>
 
         </Mobile>
         <PC>
             <Header/>
             <StyledDiv style={{background:"white"}}>
-			<div style={{width:"100%",height:"0px" }}></div>
-			<Timer></Timer>
-			<div style={{width:"100%",height:"0px" }}></div>
-			<ul>
-            <Link to={`/QR`} ><Button>Start</Button></Link>
-			
-			</ul>
-            <Readdata name="" />
-            </StyledDiv>
+                <Timer></Timer>
+                <div style={{width:"100%",height:"30px" }}></div>
+                <Status></Status>
+                <div style={{width:"100%",height:"0px" }}></div>
+                <Link to={`/QR`} ><Button>Start</Button></Link>
+                <Readdata name="" />
+                </StyledDiv>
 			
         </PC>
 		</>

@@ -3,6 +3,7 @@ import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {app,db} from "./firebase";
 import {RC, floor} from './Main';
 
+
 const getSeconds = (time) => {
   const seconds = Number(time % 60);
   if (seconds < 10) {
@@ -81,8 +82,7 @@ const UpdateBool = async (e) => {
 
   return (
     <div>
-      <h1>Remaining Time</h1>
-      <div>
+      <div style={{fontSize:"100px", textAlign:"center"}}>
         <span>{parseInt(time / 60)}</span>
         <span> : </span>
         <span>{getSeconds(time)}</span>
