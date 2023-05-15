@@ -16,8 +16,8 @@ const App = () => {
 					<Route path="/" element={<Start/>}></Route>
 					<Route path="/Main/:RCid" element={<Main />}></Route>
 					<Route path="/Start/*" element={<Start />}></Route>
-          <Route path="/Input/*" element={<Input />}></Route>
-          <Route path="/QR/*" element={<QR />}></Route>
+          			<Route path="/Input/*" element={<Input />}></Route>
+          			<Route path="/QR/*" element={<QR />}></Route>
 					<Route path="*" element={<NotFound />}></Route>
 				</Routes>
 			</BrowserRouter>

@@ -3,27 +3,27 @@ import { Link } from 'react-router-dom';
 import {Mobile, PC} from './ReactResposive';
 import Button from './Style';
 import {StyledDiv} from './Style';
+import Blue from './images/WMBlue.png';
+import Red from './images/WMRed.png';
 
 const Status = (props) => {
 	return (
 		<>
             <Mobile>
-            <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up APP</h3><br/>
-                <ul>
-                    
-                   
-                </ul>
-            </StyledDiv>
+                <div>
+                    <img src={Blue}></img>
+                    <img src={Red}></img>
+                    <img src={Blue}></img>
+                    <img src={Red}></img>
+                </div>
             </Mobile>
             <PC>
-                <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up PC</h3><br/>
-                <ul>
-                    
-                    
-                </ul>
-                </StyledDiv>
+                <div>
+                    <img src={Blue}></img>
+                    <img src={Red}></img>
+                    <img src={Blue}></img>
+                    <img src={Red}></img>
+                </div>
             </PC>
 		</>
 	);
