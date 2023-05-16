@@ -16,7 +16,7 @@ import Status from "./Status";
 
 
 const Readdata = (props) => {
-    
+    const [val,setVal] = useState(1);
     const [datas, setDatas] = useState([]);
 	var currentusing = [];
     let currentTimestamp = Date.now()
@@ -39,6 +39,7 @@ const Readdata = (props) => {
         }
 
     const UpdateBool = async (index, e) => {
+        setVal(index)
         currentTimestamp = Date.now();
         try {
           const updatedDatas = [...datas];
@@ -55,6 +56,7 @@ const Readdata = (props) => {
       };
     
       const UpdateBoolean = async (index, e) => {
+        setVal(index)
         currentTimestamp = Date.now();
         try {
           const updatedDatas = [...datas];
@@ -75,6 +77,8 @@ const Readdata = (props) => {
 
     return(
         <div className="">
+             <Timer val={val}></Timer>
+                <div style={{width:"100%",height:"30px" }}></div>
             {/* {datas.map((item,index) => (
                 <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
              
@@ -98,8 +102,7 @@ const Main = ({match,props}) => {
         <Mobile>
             <Header/>
 			<StyledDiv style={{background:"white"}}>
-                <Timer></Timer>
-                <div style={{width:"100%",height:"30px" }}></div>
+                
                 <Readdata name="" />
                 <div style={{width:"100%",height:"10px" }}></div>
                 
@@ -110,8 +113,7 @@ const Main = ({match,props}) => {
         <PC>
             <Header/>
             <StyledDiv style={{background:"white"}}>
-                <Timer></Timer>
-                <div style={{width:"100%",height:"30px" }}></div>
+               
                 <Readdata name="" />
                 <div style={{width:"100%",height:"60px" }}></div>
                 <Link to={`/QR`}  ><Button >Start</Button></Link>
