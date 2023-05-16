@@ -10,6 +10,10 @@ import { useLocation } from "react-router-dom"
 import Timer from './Timer';
 
 const Readdata = (props) => {
+<<<<<<< Updated upstream
+=======
+    const [val,setVal] = useState(1);
+>>>>>>> Stashed changes
     const [datas, setDatas] = useState([]);
 	const location = useLocation();
     console.log(location.state.RC)
@@ -26,6 +30,7 @@ const Readdata = (props) => {
                 setDatas(newData);                
                 console.log(datas, newData);
             })
+<<<<<<< Updated upstream
        
     }
     const UpdateTime = async (e) => {
@@ -92,3 +97,98 @@ const Main = (props) => {
 
 
 export default Main;
+=======
+        }
+
+        const UpdateBool = async (index, e) => {
+            setVal(index);
+            currentTimestamp = Date.now();
+            try {
+                const updatedDatas = [...datas];
+                updatedDatas[index - 1].using = false;
+                setDatas(updatedDatas);
+                // Update the corresponding document in Firebase if necessary
+                const washingmachine = doc(db, coll, String(updatedDatas[index - 1].id));
+                await updateDoc(washingmachine, {
+                  using: false
+                });
+              } catch (e) {
+                console.error("Error updating document: ", e);
+              }
+            };
+          
+            const UpdateBoolean = async (index, e) => {
+                setVal(index);
+              currentTimestamp = Date.now();
+              try {
+                const updatedDatas = [...datas];
+                updatedDatas[index - 1].using = true;
+                setDatas(updatedDatas);
+                // Update the corresponding document in Firebase if necessary
+                const washingmachine = doc(db, coll, String(updatedDatas[index - 1].id));
+                await updateDoc(washingmachine, {
+                  using: true
+                });
+              } catch (e) {
+                console.error("Error updating document: ", e);
+              }
+            };
+          useEffect(()=>{
+              fetchPost()
+            }, [])
+
+            return(
+                <div className="">
+                    {/* {datas.map((item,index) => (
+                        <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
+                     
+                      
+                      ))} */}
+                      <Timer val = {val}></Timer>
+                        <div style={{width:"100%",height:"30px" }}></div>
+                      {datas.map((item,index) => (
+                        item.using ? <button key={index} style={{background:'transparent',padding: 10, border: 0}} onClick={(e)=>UpdateBool(index+1,e)}> <img src={Red}></img></button> : <button key={index} style={{background:'transparent',padding: 10, border: 0}} onClick={(e)=>UpdateBoolean(index+1,e)}><img src={Blue}></img></button>
+                      ))}
+                      {/* <button onClick={UpdateTime}>Addtime</button>  */}
+                </div>
+                
+            );
+        }
+        
+        
+        const Main = ({match,props}) => {
+            // console.log(props.children)
+            return (
+                <>
+                
+                <Mobile>
+                    <Header/>
+                    <StyledDiv style={{background:"white"}}>
+                        <Timer></Timer>
+                        <div style={{width:"100%",height:"30px" }}></div>
+                        <Readdata name="" />
+                        <div style={{width:"100%",height:"30px" }}></div>
+                        <Link to="/QR"><Button >Start</Button></Link>
+                        <div style={{width:"100%",height:"30px" }}></div>
+                        
+                    </StyledDiv>
+        
+                </Mobile>
+                <PC>
+                    <Header/>
+                    <StyledDiv style={{background:"white"}}>
+                        
+                        <Readdata name="" />
+                        <div style={{width:"100%",height:"0px" }}></div>
+                        <Link to={`/QR`} ><Button>Start</Button></Link>
+                        
+                        </StyledDiv>
+                    
+                </PC>
+                </>
+            );
+        };
+        
+        export {RC, floor}
+        export default Main;
+>>>>>>> Stashed changes
