@@ -17,7 +17,7 @@ import Status from "./Status";
 
 const Readdata = (props) => {
     const [val,setVal] = useState(1);
-    const [datas, setDatas] = useState([]);
+    const [datas, setDatas] = useState([{using:false},{using:false},{using:false},{using:false}]);
 	var currentusing = [];
     let currentTimestamp = Date.now()
     var url = window.location.pathname
@@ -40,36 +40,13 @@ const Readdata = (props) => {
 
     const UpdateBool = async (index, e) => {
         setVal(index)
-        currentTimestamp = Date.now();
-        try {
-          const updatedDatas = [...datas];
-          updatedDatas[index - 1].using = false;
-          setDatas(updatedDatas);
-          // Update the corresponding document in Firebase if necessary
-          const washingmachine = doc(db, coll, String(updatedDatas[index - 1].id));
-          await updateDoc(washingmachine, {
-            using: false
-          });
-        } catch (e) {
-          console.error("Error updating document: ", e);
-        }
+        
       };
     
       const UpdateBoolean = async (index, e) => {
         setVal(index)
-        currentTimestamp = Date.now();
-        try {
-          const updatedDatas = [...datas];
-          updatedDatas[index - 1].using = true;
-          setDatas(updatedDatas);
-          // Update the corresponding document in Firebase if necessary
-          const washingmachine = doc(db, coll, String(updatedDatas[index - 1].id));
-          await updateDoc(washingmachine, {
-            using: true
-          });
-        } catch (e) {
-          console.error("Error updating document: ", e);
-        }
+        
+        
       };
     useEffect(()=>{
         fetchPost()

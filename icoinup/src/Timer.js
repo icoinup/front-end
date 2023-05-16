@@ -22,11 +22,11 @@ function sleep(sec) {
 
 
 const Timer = (props) => {
-  const [time1, setTime1] = useState(30); // Remaining time in seconds
-  const [time2, setTime2] = useState(30); // Remaining time in seconds
-  const [time3, setTime3] = useState(30); // Remaining time in seconds
-  const [time4, setTime4] = useState(30); // Remaining time in seconds
-  const [datas, setDatas] = useState([]);
+  const [time1, setTime1] = useState(38*60); // Remaining time in seconds
+  const [time2, setTime2] = useState(38*60); // Remaining time in seconds
+  const [time3, setTime3] = useState(38*60); // Remaining time in seconds
+  const [time4, setTime4] = useState(38*60); // Remaining time in seconds
+  const [datas, setDatas] = useState([{time: 38*60, using:false},{time: 38*60, using:false},{time: 38*60, using:false},{time: 38*60, using:false}]);
   
   var url = window.location.pathname
   let rcfloor = url.split("/");
@@ -92,10 +92,13 @@ const UpdateBool = async (e) => {
     fetchPost();
     let timerId;
   
-    if (time1 > 0) {
+    if (time1>0 && datas[0].using) {
       timerId = setInterval(() => {
         setTime1((prev) => prev - 1);
       }, 1000);
+    }
+    else{
+      setTime1(38*60)
     }
 
     return () => {
@@ -105,10 +108,13 @@ const UpdateBool = async (e) => {
 
   useEffect(() => {
     let timerId;
-    if (time2>0){
+    if (time2>0 && datas[1].using){
       timerId = setInterval(()=> {
         setTime2((prev)=> prev -1);
       }, 1000);
+    }
+    else{
+      setTime2(38*60)
     }
     return () => {
       clearInterval(timerId);
@@ -116,10 +122,13 @@ const UpdateBool = async (e) => {
   },[time2]);
   useEffect(() => {
     let timerId;
-    if (time3>0){
+    if (time3>0 && datas[2].using){
       timerId = setInterval(()=> {
         setTime3((prev)=> prev -1);
       }, 1000);
+    }
+    else{
+      setTime3(38*60)
     }
     return () => {
       clearInterval(timerId);
@@ -127,10 +136,13 @@ const UpdateBool = async (e) => {
   },[time3]);
   useEffect(() => {
     let timerId;
-    if (time4>0){
+    if (time4>0 && datas[3].using){
       timerId = setInterval(()=> {
         setTime4((prev)=> prev -1);
       }, 1000);
+    }
+    else{
+      setTime4(38*60)
     }
     return () => {
       clearInterval(timerId);
@@ -153,9 +165,7 @@ const UpdateBool = async (e) => {
 
       setTime1(0);
       UpdateBool();
-      // fireNotificationWithTimeout('iCoinUp 메시지', 5000, {
-      //   body: "세탁기 끝!!!",
-      // });
+      
     }
   }, [time1]);
   if(props.val === 1 ){
