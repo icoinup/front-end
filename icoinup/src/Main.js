@@ -22,7 +22,7 @@ const Readdata = (props) => {
     var url = window.location.pathname
     let rcfloor = url.split("/");
     var coll = rcfloor[rcfloor.length-1]
-    
+
     console.log(currentTimestamp); // get current timestamp
     let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp)
     const fetchPost = async () => {
@@ -36,42 +36,40 @@ const Readdata = (props) => {
                 console.log(datas, newData);
             })
         }
-    
-    
-    const UpdateBool = async (value,e) => {
-        
-        
-        currentTimestamp = Date.now()
-        try {
-            const washingmachine = doc(db, coll, String(value));
-            const docRef = await updateDoc(washingmachine, {
-               using : false
-              });
-            console.log("Document written with ID: ", );
-            window.location.reload();
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-    }
 
-    const UpdateBoolean = async (value,e) => {
-        
-        
-        currentTimestamp = Date.now()
+    const UpdateBool = async (index, e) => {
+        currentTimestamp = Date.now();
         try {
-            const washingmachine = doc(db, coll, String(value));
-            const docRef = await updateDoc(washingmachine, {
-               using : true
-              });
-            console.log("Document written with ID: ", );
-            window.location.reload();
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-    }
+          const updatedDatas = [...datas];
+          updatedDatas[index - 1].using = false;
+          setDatas(updatedDatas);
+          // Update the corresponding document in Firebase if necessary
+          const washingmachine = doc(db, coll, String(updatedDatas[index - 1].id));
+          await updateDoc(washingmachine, {
+            using: false
+          });
+        } catch (e) {
+          console.error("Error updating document: ", e);
+        }
+      };
+    
+      const UpdateBoolean = async (index, e) => {
+        currentTimestamp = Date.now();
+        try {
+          const updatedDatas = [...datas];
+          updatedDatas[index - 1].using = true;
+          setDatas(updatedDatas);
+          // Update the corresponding document in Firebase if necessary
+          const washingmachine = doc(db, coll, String(updatedDatas[index - 1].id));
+          await updateDoc(washingmachine, {
+            using: true
+          });
+        } catch (e) {
+          console.error("Error updating document: ", e);
+        }
+      };
     useEffect(()=>{
         fetchPost()
-        
     }, [])
 
     return(
