@@ -8,8 +8,8 @@ function Footer(props) {
     return (
         <>
         <Mobile>
-            <StyledDiv style={{padding:"20px", height:"80px"}}>
-            <Link to={`/QR`}  ><Button >Start</Button></Link>
+            <StyledDiv style={{height:"80px", paddingTop: "15px", paddingBottom:"15px"}}>
+            <Link to={`/QR`}  ><Button>Start</Button></Link>
             </StyledDiv>
         </Mobile>
         
