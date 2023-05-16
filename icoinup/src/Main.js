@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link ,useParams} from 'react-router-dom';
 import {Mobile, PC} from './ReactResposive';
 import Header from './Header.js';
+import Footer from './Footer.js';
 import Button from './Style';
 import {StyledDiv} from './Style';
 import {Input, RC, floor} from './Input';
@@ -100,11 +101,10 @@ const Main = ({match,props}) => {
                 <Timer></Timer>
                 <div style={{width:"100%",height:"30px" }}></div>
                 <Readdata name="" />
-                <div style={{width:"100%",height:"30px" }}></div>
-                <Link to="/QR"><Button >Start</Button></Link>
-                <div style={{width:"100%",height:"30px" }}></div>
+                <div style={{width:"100%",height:"10px" }}></div>
                 
             </StyledDiv>
+            <Footer/>
 
         </Mobile>
         <PC>
@@ -113,10 +113,9 @@ const Main = ({match,props}) => {
                 <Timer></Timer>
                 <div style={{width:"100%",height:"30px" }}></div>
                 <Readdata name="" />
-                <div style={{width:"100%",height:"0px" }}></div>
-                <Link to={`/QR`} ><Button>Start</Button></Link>
-                
-                </StyledDiv>
+                <div style={{width:"100%",height:"60px" }}></div>
+                <Link to={`/QR`}  ><Button >Start</Button></Link>
+            </StyledDiv>
 			
         </PC>
 		</>

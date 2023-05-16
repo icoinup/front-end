@@ -3,7 +3,8 @@ import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import { usePushNotification } from './notification';
 import {app,db} from "./firebase";
 import {RC, floor} from './Main';
-
+import useSound from 'use-sound';
+import alram from './sounds/alram.mp3';
 
 
 
@@ -21,6 +22,7 @@ function sleep(sec) {
 const Timer = () => {
   const [time, setTime] = useState(30); // Remaining time in seconds
   const [datas, setDatas] = useState([]);
+  
   var url = window.location.pathname
   let rcfloor = url.split("/");
   var coll = rcfloor[rcfloor.length-1]
@@ -66,6 +68,7 @@ const UpdateBool = async (e) => {
   useEffect(() => {
     fetchPost();
     let timerId;
+  
     if (time > 0) {
       timerId = setInterval(() => {
         setTime((prev) => prev - 1);
@@ -76,11 +79,21 @@ const UpdateBool = async (e) => {
       clearInterval(timerId);
     };
   }, [time]);
-
+  const [playbackRate, setPlaybackRate] = useState(0.75);
+  const [play] = useSound(alram, {
+    playbackRate,
+    volume: 0.5,
+  });
   useEffect(() => {
+    if(time===1){
+      setPlaybackRate(playbackRate + 0.6);
+      play();
+    }
     if (time === 0) {
       
       alert("Time OVER!");
+      
+
       setTime(0);
       UpdateBool();
       // fireNotificationWithTimeout('iCoinUp 메시지', 5000, {
