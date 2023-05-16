@@ -12,8 +12,9 @@ function Header(props) {
             </div>
         </Mobile>
         <PC>
-        <div style={{background: "#CBE6F9", padding:"15px"}}>
+        <div style={{background: "#CBE6F9", padding:"15px",display: "flex"}}>
             <img src={Logo} />
+            <p style={{fontSize:"20px", fontWeight:"bold", marginLeft:"20px", color:"#37447E"}}>IcoinUP!</p>
             </div>
         </PC>
             
