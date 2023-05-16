@@ -62,6 +62,7 @@ class QR_Scanner extends Component {
       sleep(3);
       alert('계산이 완료되었습니다!');
       // onCancel();
+      
       window.history.go(-1);
       }
       else{
