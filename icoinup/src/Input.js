@@ -5,6 +5,8 @@ import Button from './Style';
 import {StyledDiv, BackDiv} from './Style';
 import {app,db} from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
+import Logo from './images/Logo/apple-icon-180x180.png';
+
 
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,6 +15,9 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
+
+
+
 var RC = ""
 var floor = ""
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -64,12 +69,11 @@ const Selection = () => {
       };
       return (
         <div className="Selections">
-          <h1>Select your RC</h1>
           <FormControl sx={{ m: 1 }} variant="standard">
               <InputLabel htmlFor="demo-customized-textbox">Student Code</InputLabel> 
               <BootstrapInput id="demo-customized-textbox" />
-          </FormControl>
-          <hr />
+            </FormControl>
+          <div style={{width:"100%",height:"10px" }}></div>
           <div>
           <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
@@ -84,7 +88,7 @@ const Selection = () => {
           </FormControl>  
           </Box >
             
-            <hr />
+          <div style={{width:"100%",height:"10px" }}></div>
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Floor</InputLabel>
@@ -98,7 +102,7 @@ const Selection = () => {
               </FormControl>
             </Box>
             
-            <hr />
+        
             <p>
               Selected: <b>{SelectedRC} {SelectedFloor}</b>
             </p>
@@ -117,13 +121,14 @@ const Input = (props) => {
 		<>
         <Mobile>
           <StyledDiv>
-
+            <img src={Logo} />
               <Selection />    
           </StyledDiv>
         </Mobile>
             
         <PC>
             <StyledDiv>
+            <img src={Logo} />
               <Selection />
             </StyledDiv>
         </PC>

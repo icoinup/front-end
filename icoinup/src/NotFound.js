@@ -20,7 +20,7 @@ const NotFound = () => {
                 <StyledDiv>
                 <div style={{width:"100%",height:"0px" }}></div> 
                 <img src={AppLogo} />
-                <div style={{width:"100%",height:"20px" }}></div>
+                <div style={{width:"100%",height:"0px" }}></div>
                 <p style={{fontSize:"80px"}}>404 Error</p>
                 <p style={{fontSize:"30px"}}>Please, go to the back step.</p>
 
