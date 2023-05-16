@@ -6,8 +6,47 @@ import {StyledDiv, BackDiv} from './Style';
 import {app,db} from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
 var RC = ""
 var floor = ""
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}));
 
 const Selection = () => {
     const RCs = [" ","Bethel", "Grace", "Vision", "Rothem","Hayongjo","Carmichael","Creation","Papyrus"];
@@ -26,22 +65,39 @@ const Selection = () => {
       return (
         <div className="Selections">
           <h1>Select your RC</h1>
+          <FormControl sx={{ m: 1 }} variant="standard">
+              <InputLabel htmlFor="demo-customized-textbox">Student Code</InputLabel> 
+              <BootstrapInput id="demo-customized-textbox" />
+          </FormControl>
+          <hr />
           <div>
-            <select onChange={handleSelectRC} value={SelectedRC}>
-              {RCs.map((item) => (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
+          <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">RC</InputLabel>
+            <Select labelId="demo-simple-select-label" id="demo-simple-select"onChange={handleSelectRC} value={SelectedRC}>
+                {RCs.map((item) => (
+                  <MenuItem value={item} key={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+            </Select>
+          </FormControl>  
+          </Box >
+            
             <hr />
-            <select onChange={handleSelectFloor} value={SelectedFloor}>
-              {floors.map((item) => (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Floor</InputLabel>
+                <Select onChange={handleSelectFloor} value={SelectedFloor}>
+                {floors.map((item) => (
+                  <MenuItem value={item} key={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+              </FormControl>
+            </Box>
+            
             <hr />
             <p>
               Selected: <b>{SelectedRC} {SelectedFloor}</b>
@@ -61,20 +117,16 @@ const Input = (props) => {
 		<>
         <Mobile>
           <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up</h3><br/>
-                    <Selection />    
-            </StyledDiv>
 
-            </Mobile>
+              <Selection />    
+          </StyledDiv>
+        </Mobile>
             
-            <PC>
-                <StyledDiv>
-                <h3 style={{color:"white",fontSize:"50px" }}>Icoin Up</h3><br/>
-                <Selection />
-                </StyledDiv>
-              
-
-            </PC>
+        <PC>
+            <StyledDiv>
+              <Selection />
+            </StyledDiv>
+        </PC>
             
 		</>
 	);
