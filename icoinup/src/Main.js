@@ -13,6 +13,7 @@ import Blue from "./images/WMBlue.png";
 import Red from "./images/WMRed.png";
 import Status from "./Status";
 
+
 const Readdata = (props) => {
     
     const [datas, setDatas] = useState([]);
@@ -44,6 +45,22 @@ const Readdata = (props) => {
         try {
             const washingmachine = doc(db, coll, String(value));
             const docRef = await updateDoc(washingmachine, {
+               using : false
+              });
+            console.log("Document written with ID: ", );
+            window.location.reload();
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
+
+    const UpdateBoolean = async (value,e) => {
+        
+        
+        currentTimestamp = Date.now()
+        try {
+            const washingmachine = doc(db, coll, String(value));
+            const docRef = await updateDoc(washingmachine, {
                using : true
               });
             console.log("Document written with ID: ", );
@@ -59,13 +76,13 @@ const Readdata = (props) => {
 
     return(
         <div className="">
-            {datas.map((item,index) => (
-                <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { hour: '2-digit',minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
+            {/* {datas.map((item,index) => (
+                <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
              
               
-              ))}
+              ))} */}
               {datas.map((item,index) => (
-                item.using ? <button key={index} onClick={(e)=>UpdateBool(index+1,e)}>Using</button> : <button key={index} onClick={(e)=>UpdateBool(index+1,e)}>Not</button>
+                item.using ? <button key={index} style={{background:'transparent',padding: 10, border: 0}} onClick={(e)=>UpdateBool(index+1,e)}> <img src={Red}></img></button> : <button key={index} style={{background:'transparent',padding: 10, border: 0}} onClick={(e)=>UpdateBoolean(index+1,e)}><img src={Blue}></img></button>
               ))}
               {/* <button onClick={UpdateTime}>Addtime</button>  */}
         </div>
@@ -84,7 +101,7 @@ const Main = ({match,props}) => {
 			<StyledDiv style={{background:"white"}}>
                 <Timer></Timer>
                 <div style={{width:"100%",height:"30px" }}></div>
-                <Status></Status>
+                <Readdata name="" />
                 <div style={{width:"100%",height:"30px" }}></div>
                 <Link to="/QR"><Button >Start</Button></Link>
                 <div style={{width:"100%",height:"30px" }}></div>
@@ -97,10 +114,10 @@ const Main = ({match,props}) => {
             <StyledDiv style={{background:"white"}}>
                 <Timer></Timer>
                 <div style={{width:"100%",height:"30px" }}></div>
-                <Status></Status>
+                <Readdata name="" />
                 <div style={{width:"100%",height:"0px" }}></div>
                 <Link to={`/QR`} ><Button>Start</Button></Link>
-                <Readdata name="" />
+                
                 </StyledDiv>
 			
         </PC>

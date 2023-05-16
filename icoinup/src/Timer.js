@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { usePushNotification } from './notification';
 import {app,db} from "./firebase";
 import {RC, floor} from './Main';
+
+
 
 
 const getSeconds = (time) => {
@@ -45,14 +48,16 @@ const Timer = () => {
    
 }
 const UpdateBool = async (e) => {     
-  
+
   
   try {
       const washingmachine = doc(db, coll, "1");
       const docRef = await updateDoc(washingmachine, {
          using: false
         });
+        
         window.location.reload();
+        
       console.log("Document written with ID: ", );
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -74,9 +79,13 @@ const UpdateBool = async (e) => {
 
   useEffect(() => {
     if (time === 0) {
+      
       alert("Time OVER!");
       setTime(0);
       UpdateBool();
+      // fireNotificationWithTimeout('iCoinUp 메시지', 5000, {
+      //   body: "세탁기 끝!!!",
+      // });
     }
   }, [time]);
 
