@@ -4,8 +4,6 @@ import styled, {css}from "styled-components";
 
 export const StyledButton = styled.button`
   padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 1rem;
   line-height: 1.5;
   border: 8px solid #37447E;
   border-radius: 20px;
@@ -13,6 +11,7 @@ export const StyledButton = styled.button`
   font-size:30px;
   background: #F1FAFF;
   width: 190px;
+  text-align: center;
 `;
 export const StyledDiv = styled.div`
   
@@ -24,10 +23,14 @@ export const StyledDiv = styled.div`
   color:#37447E;
   white-space: pre-line;
   display: flex;
+  flex-direction:  column;
+  flex-wrap: wrap;
 `;
 
 export const BackDiv = styled.div`
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background: white;
@@ -37,6 +40,8 @@ export const BackDiv = styled.div`
   white-space: pre-line;
 `;
 
+
 export default function Button({ children }) {
     return <StyledButton>{children}</StyledButton>;
   }
+
