@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from './images/Logo.jpg';
+import Logo from './images/Logo/apple-icon-72x72.png';
+import AppLogo from './images/Logo/android-icon-72x72.png';
+import {Mobile, PC} from './ReactResposive';
 function Header(props) {
     return (
         <>
@@ -11,9 +13,7 @@ function Header(props) {
         </Mobile>
         <PC>
         <div style={{background: "#CBE6F9", padding:"15px",display: "flex"}}>
-            <Link to="/">
-            <img src={Logo} />
-            </Link>
+            <Link to="/"><img src={Logo} /></Link>
             <p style={{fontSize:"20px", fontWeight:"bold", marginLeft:"20px", color:"#37447E"}}>IcoinUP!</p>
             </div>
         </PC>
