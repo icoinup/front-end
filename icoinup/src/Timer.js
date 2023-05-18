@@ -52,6 +52,7 @@ const Timer = (props) => {
 
           var totalsec = 38*60 - (hours*3600+minutes*60+seconds)
           
+          
           if(i===0){
             setTime1(totalsec);
           }
@@ -71,7 +72,7 @@ const Timer = (props) => {
    
 }
 
-const UpdateBool = async (e) => {     
+const UpdateBool1 = async (e) => {     
 
   
   try {
@@ -87,6 +88,55 @@ const UpdateBool = async (e) => {
       console.error("Error adding document: ", e);
     }
 }
+const UpdateBool2 = async (e) => {     
+
+  
+  try {
+      const washingmachine = doc(db, coll, "2");
+      const docRef = await updateDoc(washingmachine, {
+         using: false
+        });
+        
+        window.location.reload();
+        
+      console.log("Document written with ID: ", );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+}
+const UpdateBool3 = async (e) => {     
+
+  
+  try {
+      const washingmachine = doc(db, coll, "3");
+      const docRef = await updateDoc(washingmachine, {
+         using: false
+        });
+        
+        window.location.reload();
+        
+      console.log("Document written with ID: ", );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+}
+const UpdateBool4 = async (e) => {     
+
+  
+  try {
+      const washingmachine = doc(db, coll, "4");
+      const docRef = await updateDoc(washingmachine, {
+         using: false
+        });
+        
+        window.location.reload();
+        
+      console.log("Document written with ID: ", );
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+}
+
 
   useEffect(() => {
     fetchPost();
@@ -163,11 +213,56 @@ const UpdateBool = async (e) => {
       alert("Time OVER!");
       
 
-      setTime1(0);
-      UpdateBool();
+      setTime1(38*60);
+      UpdateBool1();
       
     }
   }, [time1]);
+  useEffect(() => {
+    if(time2===1){
+      setPlaybackRate(playbackRate + 0.6);
+      play();
+    }
+    if (time2 === 0) {
+      
+      alert("Time OVER!");
+      
+
+      setTime2(38*60);
+      UpdateBool2();
+      
+    }
+  }, [time2]);
+  useEffect(() => {
+    if(time3===1){
+      setPlaybackRate(playbackRate + 0.6);
+      play();
+    }
+    if (time3 === 0) {
+      
+      alert("Time OVER!");
+      
+
+      setTime3(38*60);
+      UpdateBool3();
+      
+    }
+  }, [time3]);
+  useEffect(() => {
+    if(time4===1){
+      setPlaybackRate(playbackRate + 0.6);
+      play();
+    }
+    if (time4 === 0) {
+      
+      alert("Time OVER!");
+      
+
+      setTime4(38*60);
+      UpdateBool4();
+      
+    }
+  }, [time4]);
   if(props.val === 1 ){
     return (
       <div>
