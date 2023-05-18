@@ -5,7 +5,7 @@ import Button from './Style';
 import {StyledDiv, BackDiv} from './Style';
 import {app,db} from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
-import Logo from './images/Logo/apple-icon-180x180.png';
+import Logo from './images/Logo/apple-icon-152x152.png';
 
 
 import Select from '@mui/material/Select';
@@ -121,7 +121,8 @@ const Input = (props) => {
 		<>
         <Mobile>
           <StyledDiv>
-            <img src={Logo} />
+          <img src={Logo} />
+          <div style={{width:"100%",height:"10px" }}></div>
               <Selection />    
           </StyledDiv>
         </Mobile>
