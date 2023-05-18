@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom"
 import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import {StyledDiv, BackDiv} from './Style';
 import { AiFillCamera } from "react-icons/ai";
+import Main from './Main';
+
 function sleep(sec) {
   return new Promise(resolve => setTimeout(resolve, sec * 1000));
 } 
@@ -57,10 +59,9 @@ class QR_Scanner extends Component {
               console.error("Error adding document: ", e);
             }
       }
-        
       await UpdateTime();
       sleep(3);
-      alert('계산이 완료되었습니다!');
+      alert(data +'번 세탁기의 계산이 완료되었습니다!');
       // onCancel();
       
       window.history.go(-1);
