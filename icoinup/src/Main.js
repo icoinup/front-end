@@ -16,14 +16,14 @@ import Status from "./Status";
 
 
 const Readdata = (props) => {
-    
-    const [datas, setDatas] = useState([]);
+    const [val,setVal] = useState(1);
+    const [datas, setDatas] = useState([{using:false},{using:false},{using:false},{using:false}]);
 	var currentusing = [];
     let currentTimestamp = Date.now()
     var url = window.location.pathname
     let rcfloor = url.split("/");
     var coll = rcfloor[rcfloor.length-1]
-    
+
     console.log(currentTimestamp); // get current timestamp
     let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp)
     const fetchPost = async () => {
@@ -37,46 +37,25 @@ const Readdata = (props) => {
                 console.log(datas, newData);
             })
         }
-    
-    
-    const UpdateBool = async (value,e) => {
-        
-        
-        currentTimestamp = Date.now()
-        try {
-            const washingmachine = doc(db, coll, String(value));
-            const docRef = await updateDoc(washingmachine, {
-               using : false
-              });
-            console.log("Document written with ID: ", );
-            window.location.reload();
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-    }
 
-    const UpdateBoolean = async (value,e) => {
+    const UpdateBool = async (index, e) => {
+        setVal(index)
+        
+      };
+    
+      const UpdateBoolean = async (index, e) => {
+        setVal(index)
         
         
-        currentTimestamp = Date.now()
-        try {
-            const washingmachine = doc(db, coll, String(value));
-            const docRef = await updateDoc(washingmachine, {
-               using : true
-              });
-            console.log("Document written with ID: ", );
-            window.location.reload();
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-    }
+      };
     useEffect(()=>{
         fetchPost()
-        
     }, [])
 
     return(
         <div className="">
+             <Timer val={val}></Timer>
+                <div style={{width:"100%",height:"30px" }}></div>
             {/* {datas.map((item,index) => (
                 <p key={index}> {item.using.toString()} {Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp-(item.time))}</p>
              
@@ -100,8 +79,7 @@ const Main = ({match,props}) => {
         <Mobile>
             <Header/>
 			<StyledDiv style={{background:"white"}}>
-                <Timer></Timer>
-                <div style={{width:"100%",height:"30px" }}></div>
+                
                 <Readdata name="" />
                 <div style={{width:"100%",height:"10px" }}></div>
                 
@@ -112,10 +90,10 @@ const Main = ({match,props}) => {
         <PC>
             <Header/>
             <StyledDiv style={{background:"white"}}>
-                <Timer></Timer>
-                <div style={{width:"100%",height:"30px" }}></div>
+               
                 <Readdata name="" />
-                <div style={{width:"100%",height:"10px" }}></div>
+                <div style={{width:"100%",height:"60px" }}></div>
+                <Link to={`/QR`}  ><Button >Start</Button></Link>
             </StyledDiv>
 			
         </PC>
