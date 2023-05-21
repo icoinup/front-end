@@ -35,7 +35,8 @@ const Readdata = (props) => {
     const [time2, setTime2] = useState(38 * 60); // Remaining time in seconds
     const [time3, setTime3] = useState(38 * 60); // Remaining time in seconds
     const [time4, setTime4] = useState(38 * 60); // Remaining time in seconds
-    const [datas, setDatas] = useState([{ time: 38 * 60, using: false }, { time: 38 * 60, using: false }, { time: 38 * 60, using: false }, { time: 38 * 60, using: false }]);
+    const [time5, setTime5] = useState(6000 * 60); // Remaining time in seconds
+    const [datas, setDatas] = useState([{ time: 5 * 60, using: false }, { time: 5 * 60, using: false }, { time: 5 * 60, using: false }, { time: 5 * 60, using: false }]);
     var currentusing = [];
 
     var url = window.location.pathname
@@ -88,10 +89,22 @@ const Readdata = (props) => {
     const UpdateBoolean = async (index, e) => {
         setVal(index)
     };
-
-
+    useEffect(() => {
+        fetchPost()
+        let timerId;
+        if (time5 % 1000===0) {
+            timerId = setInterval(() => {
+                setTime5((prev) => prev - 60);
+            }, 1000);
+        }
+        return () => {
+            clearInterval(timerId);
+        };
+    }, [time5]);
+    // useEffect(()=>{
+    //     fetchPost()
+    // },[val]);
     const UpdateBool1 = async (e) => {
-
 
         try {
             const washingmachine = doc(db, coll, "1");
@@ -157,7 +170,7 @@ const Readdata = (props) => {
 
 
     useEffect(() => {
-        fetchPost()
+        
         let timerId;
 
         if (time1 > 0 && datas[0].using) {
@@ -281,6 +294,7 @@ const Readdata = (props) => {
 
         }
     }, [time4]);
+
 
     return (
         <div className="">
