@@ -5,7 +5,7 @@ import {RC, floor} from './Main';
 import './qr_user.css';
 import {app,db} from "./firebase";
 import { useLocation } from "react-router-dom"
-import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc, getDoc } from "firebase/firestore";
 import {StyledDiv, BackDiv} from './Style';
 import { AiFillCamera } from "react-icons/ai";
 import Main from './Main';
@@ -29,7 +29,7 @@ class QR_Scanner extends Component {
     
   }
   
-  
+
   handleScan = async (data) => {
     
     if (data) {
@@ -44,7 +44,7 @@ class QR_Scanner extends Component {
       
       if(parseInt(data)>0){
         const UpdateTime = async (e) => {
-            
+          
           let currentTimestamp = Date.now()
           try { 
               const washingmachine = doc(db, RC+floor, String(data));
@@ -59,6 +59,7 @@ class QR_Scanner extends Component {
               console.error("Error adding document: ", e);
             }
       }
+        
       await UpdateTime();
       sleep(3);
       alert(data +'번 세탁기의 계산이 완료되었습니다!');
