@@ -29,7 +29,9 @@ const getSeconds = (time) => {
 };
 function sleep(sec) {
     return new Promise(resolve => setTimeout(resolve, sec * 1000));
-}
+};
+
+
 
 
 const Readdata = (props) => {
@@ -407,24 +409,29 @@ const Readdata = (props) => {
             {datas.map((item, index) => (
                 item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> <img src={Red}></img></button> : <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}><img src={Blue}></img></button>
             ))}
-            {/* <button onClick={UpdateTime}>Addtime</button>  */}
-            <div style={{ width: "100%", display: "flex" }}>
-            <div style={{ width: "10px",width: '20%' }}><Box sx={{ width: '20%' }}>
-                <LinearProgress variant="determinate" value={progress1} />
-                
-            </Box></div>
-            <Box sx={{ width: '20%' }}>
-                <LinearProgress variant="determinate" value={progress2} />
-                
-            </Box>
-            <Box sx={{ width: '20%' }}>
-                <LinearProgress variant="determinate" value={progress2} />
-                
-            </Box>
-            <Box sx={{ width: '20%' }}>
-                <LinearProgress variant="determinate" value={progress2} />
-                
-            </Box>
+            
+            {/* <button onClick={UpdateTime}>Addtime</button>  justifyContent:"space-between"*/}
+            <div style={{ width: "100%", display: "flex", columnGap:"1.6em", justifyContent:'center'}}>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress1} />
+                    <LinearProgress variant="determinate" value={progress1} />
+                    
+                </Box>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress2} />
+                    <LinearProgress variant="determinate" value={progress2} />
+                    
+                </Box>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress3} />
+                    <LinearProgress variant="determinate" value={progress3} />
+                    
+                </Box>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress4} />
+                    <LinearProgress variant="determinate" value={progress4} />
+                    
+                </Box>
 
             </div>
             
@@ -438,6 +445,7 @@ const Readdata = (props) => {
 
 const Main = ({ match, props }) => {
     // console.log(props.children)
+
     return (
         <>
 
@@ -458,6 +466,7 @@ const Main = ({ match, props }) => {
 
                     <Readdata name="" />
                     <div style={{ width: "100%", height: "60px" }}></div>
+                    
                     <Link to={`/QR`}  ><Button >Start</Button></Link>
                 </StyledDiv>
 
