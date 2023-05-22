@@ -15,6 +15,8 @@ import Red from "./images/WMRed.png";
 import Status from "./Status";
 import useSound from 'use-sound';
 import alram from './sounds/alram.mp3';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const getSeconds = (time) => {
     const seconds = Number(time % 60);
@@ -26,7 +28,9 @@ const getSeconds = (time) => {
 };
 function sleep(sec) {
     return new Promise(resolve => setTimeout(resolve, sec * 1000));
-}
+};
+
+
 
 
 const Readdata = (props) => {
@@ -303,6 +307,9 @@ const Readdata = (props) => {
                     <span>{parseInt(time1 / 60)}</span>
                     <span> : </span>
                     <span>{getSeconds(time1)}</span>
+                    <Box sx={{ width: '25%' }}>
+                        <LinearProgress variant="determinate" value={time1} />
+                    </Box>
                 </div>
             </div>) : <div>
                 <div style={{ fontSize: "100px", textAlign: "center" }}>
@@ -328,6 +335,7 @@ const Readdata = (props) => {
             {datas.map((item, index) => (
                 item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> <img src={Red}></img></button> : <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}><img src={Blue}></img></button>
             ))}
+            
             {/* <button onClick={UpdateTime}>Addtime</button>  */}
         </div>
 
@@ -337,6 +345,7 @@ const Readdata = (props) => {
 
 const Main = ({ match, props }) => {
     // console.log(props.children)
+
     return (
         <>
 
@@ -357,6 +366,7 @@ const Main = ({ match, props }) => {
 
                     <Readdata name="" />
                     <div style={{ width: "100%", height: "60px" }}></div>
+                    
                     <Link to={`/QR`}  ><Button >Start</Button></Link>
                 </StyledDiv>
 
