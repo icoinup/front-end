@@ -18,6 +18,7 @@ import alram from './sounds/alram.mp3';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
+
 const getSeconds = (time) => {
     const seconds = Number(time % 60);
     if (seconds < 10) {
@@ -39,6 +40,10 @@ const Readdata = (props) => {
     const [time2, setTime2] = useState(38 * 60); // Remaining time in seconds
     const [time3, setTime3] = useState(38 * 60); // Remaining time in seconds
     const [time4, setTime4] = useState(38 * 60); // Remaining time in seconds
+    const [progress1, setProgress1] = useState(0);
+    const [progress2, setProgress2] = useState(0);
+    const [progress3, setProgress3] = useState(0);
+    const [progress4, setProgress4] = useState(0);
     const [time5, setTime5] = useState(6000 * 60); // Remaining time in seconds
     const [datas, setDatas] = useState([{ time: 5 * 60, using: false }, { time: 5 * 60, using: false }, { time: 5 * 60, using: false }, { time: 5 * 60, using: false }]);
     var currentusing = [];
@@ -82,7 +87,6 @@ const Readdata = (props) => {
                 setTime4(totalsec);
             }
 
-
         }
     }
 
@@ -96,7 +100,7 @@ const Readdata = (props) => {
     useEffect(() => {
         fetchPost()
         let timerId;
-        if (time5 % 1000===0) {
+        if (time5 % 1000 === 0) {
             timerId = setInterval(() => {
                 setTime5((prev) => prev - 60);
             }, 1000);
@@ -174,7 +178,7 @@ const Readdata = (props) => {
 
 
     useEffect(() => {
-        
+
         let timerId;
 
         if (time1 > 0 && datas[0].using) {
@@ -299,6 +303,79 @@ const Readdata = (props) => {
         }
     }, [time4]);
 
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress1((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 100;
+                }
+                
+                    oldProgress = ((2280 - time1)/2280);
+                    console.log(time1, ((2280 - time1)/2280))
+                    return Math.min(oldProgress*100, 100);
+                
+            });
+        }, 500);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [time1]);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress2((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 100;
+                }
+                
+                    oldProgress = ((2280 - time2)/2280);
+                    return Math.min(oldProgress*100, 100);
+                
+            });
+        }, 500);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [time2]);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress3((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 100;
+                }
+                
+                    oldProgress = ((2280 - time3)/2280);
+                    return Math.min(oldProgress*100, 100);
+                
+            });
+        }, 500);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [time3]);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress4((oldProgress) => {
+                if (oldProgress === 100) {
+                    return 100;
+                }
+                
+                    oldProgress = ((2280 - time4)/2280);
+                    return Math.min(oldProgress*100, 100);
+                
+            });
+        }, 500);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [time4]);
+
 
     return (
         <div className="">
@@ -307,9 +384,6 @@ const Readdata = (props) => {
                     <span>{parseInt(time1 / 60)}</span>
                     <span> : </span>
                     <span>{getSeconds(time1)}</span>
-                    <Box sx={{ width: '25%' }}>
-                        <LinearProgress variant="determinate" value={time1} />
-                    </Box>
                 </div>
             </div>) : <div>
                 <div style={{ fontSize: "100px", textAlign: "center" }}>
@@ -336,7 +410,33 @@ const Readdata = (props) => {
                 item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> <img src={Red}></img></button> : <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}><img src={Blue}></img></button>
             ))}
             
-            {/* <button onClick={UpdateTime}>Addtime</button>  */}
+            {/* <button onClick={UpdateTime}>Addtime</button>  justifyContent:"space-between"*/}
+            <div style={{ width: "100%", display: "flex", columnGap:"1.6em", justifyContent:'center'}}>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress1} />
+                    <LinearProgress variant="determinate" value={progress1} />
+                    
+                </Box>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress2} />
+                    <LinearProgress variant="determinate" value={progress2} />
+                    
+                </Box>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress3} />
+                    <LinearProgress variant="determinate" value={progress3} />
+                    
+                </Box>
+                <Box sx={{ width: '20%' }}>
+                    <LinearProgress variant="determinate" value={progress4} />
+                    <LinearProgress variant="determinate" value={progress4} />
+                    
+                </Box>
+
+            </div>
+            
+            
+
         </div>
 
     );
