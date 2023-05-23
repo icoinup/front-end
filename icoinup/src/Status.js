@@ -25,6 +25,7 @@ const Status = (props) => {
                     <img src={Red}></img>
                 </div>
             </PC>
+            
 		</>
 	);
 };
