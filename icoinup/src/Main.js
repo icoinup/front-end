@@ -12,7 +12,6 @@ import { useLocation } from "react-router-dom"
 import Timer from './Timer';
 import Blue from "./images/WMBlue.png";
 import Red from "./images/WMRed.png";
-import Status from "./Status";
 import useSound from 'use-sound';
 import alram from './sounds/alram.mp3';
 import Box from '@mui/material/Box';
@@ -30,9 +29,6 @@ const getSeconds = (time) => {
 function sleep(sec) {
     return new Promise(resolve => setTimeout(resolve, sec * 1000));
 };
-
-
-
 
 const Readdata = (props) => {
     const [val, setVal] = useState(1);
@@ -109,9 +105,7 @@ const Readdata = (props) => {
             clearInterval(timerId);
         };
     }, [time5]);
-    // useEffect(()=>{
-    //     fetchPost()
-    // },[val]);
+
     const UpdateBool1 = async (e) => {
 
         try {
@@ -175,12 +169,8 @@ const Readdata = (props) => {
             console.error("Error adding document: ", e);
         }
     }
-
-
     useEffect(() => {
-
         let timerId;
-
         if (time1 > 0 && datas[0].using) {
             timerId = setInterval(() => {
                 setTime1((prev) => prev - 1);
@@ -248,13 +238,9 @@ const Readdata = (props) => {
             play();
         }
         if (time1 === 0) {
-
             alert("Time OVER!");
-
-
             setTime1(38 * 60);
             UpdateBool1();
-
         }
     }, [time1]);
     useEffect(() => {
@@ -309,11 +295,11 @@ const Readdata = (props) => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                
-                    oldProgress = ((2280 - time1)/2280);
-                    console.log(time1, ((2280 - time1)/2280))
-                    return Math.min(oldProgress*100, 100);
-                
+
+                oldProgress = ((2280 - time1) / 2280);
+                console.log(time1, ((2280 - time1) / 2280))
+                return Math.min(oldProgress * 100, 100);
+
             });
         }, 500);
 
@@ -328,10 +314,8 @@ const Readdata = (props) => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                
-                    oldProgress = ((2280 - time2)/2280);
-                    return Math.min(oldProgress*100, 100);
-                
+                oldProgress = ((2280 - time2) / 2280);
+                return Math.min(oldProgress * 100, 100);
             });
         }, 500);
 
@@ -346,13 +330,10 @@ const Readdata = (props) => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                
-                    oldProgress = ((2280 - time3)/2280);
-                    return Math.min(oldProgress*100, 100);
-                
+                oldProgress = ((2280 - time3) / 2280);
+                return Math.min(oldProgress * 100, 100);
             });
         }, 500);
-
         return () => {
             clearInterval(timer);
         };
@@ -364,10 +345,9 @@ const Readdata = (props) => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                
-                    oldProgress = ((2280 - time4)/2280);
-                    return Math.min(oldProgress*100, 100);
-                
+
+                oldProgress = ((2280 - time4) / 2280);
+                return Math.min(oldProgress * 100, 100);
             });
         }, 500);
 
@@ -375,10 +355,7 @@ const Readdata = (props) => {
             clearInterval(timer);
         };
     }, [time4]);
-
-
     return (
-        
         <div >
             <Mobile>
                 {(val % 2 !== 0) ? ((val < 2) ? (<div >
@@ -407,111 +384,99 @@ const Readdata = (props) => {
                     </div>
                 </div>)}
                 <div style={{ width: "100%", height: "20px" }}></div>
-                <div style={{display:"flex", columnGap:"0.1em", justifyContent:'center'}}>
-                {datas.map((item, index) => (
-                    item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> <img src={Red} style={{width:"60%"}}></img></button> : <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}><img src={Blue} style={{width:"60%"}}></img></button>
-                ))}
+                <div style={{ display: "flex", columnGap: "0.1em", justifyContent: 'center' }}>
+                    {datas.map((item, index) => (
+                        item.using ? 
+                        <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> 
+                        <img src={Red} style={{ width: "60%" }}></img></button> : 
+                        <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}>
+                        <img src={Blue} style={{ width: "60%" }}></img></button>
+                    ))}
                 </div>
                 {/* <button onClick={UpdateTime}>Addtime</button>  justifyContent:"space-between"*/}
-                <div style={{ width: "100%", display: "flex", columnGap:"2.4em", justifyContent:'center'}}>
+                <div style={{ width: "100%", display: "flex", columnGap: "2.4em", justifyContent: 'center' }}>
                     <Box sx={{ width: '15%' }}>
                         <LinearProgress variant="determinate" value={progress1} />
                         <LinearProgress variant="determinate" value={progress1} />
-                        
                     </Box>
                     <Box sx={{ width: '15%' }}>
                         <LinearProgress variant="determinate" value={progress2} />
                         <LinearProgress variant="determinate" value={progress2} />
-                        
                     </Box>
                     <Box sx={{ width: '15%' }}>
                         <LinearProgress variant="determinate" value={progress3} />
                         <LinearProgress variant="determinate" value={progress3} />
-                        
                     </Box>
                     <Box sx={{ width: '15%' }}>
                         <LinearProgress variant="determinate" value={progress4} />
                         <LinearProgress variant="determinate" value={progress4} />
-                        
                     </Box>
-
                 </div>
-            
-            </Mobile> 
+            </Mobile>
             <PC>
-            {(val % 2 !== 0) ? ((val < 2) ? (<div>
-                <div style={{ fontSize: "100px", textAlign: "center" }}>
-                    <span>{parseInt(time1 / 60)}</span>
-                    <span> : </span>
-                    <span>{getSeconds(time1)}</span>
-                </div>
-            </div>) : <div>
-                <div style={{ fontSize: "100px", textAlign: "center" }}>
-                    <span>{parseInt(time3 / 60)}</span>
-                    <span> : </span>
-                    <span>{getSeconds(time3)}</span>
-                </div>
-            </div>) : ((val < 3) ? (<div>
-                <div style={{ fontSize: "100px", textAlign: "center" }}>
-                    <span>{parseInt(time2 / 60)}</span>
-                    <span> : </span>
-                    <span>{getSeconds(time2)}</span>
-                </div>
-            </div>) : <div>
-                <div style={{ fontSize: "100px", textAlign: "center" }}>
-                    <span>{parseInt(time4 / 60)}</span>
-                    <span> : </span>
-                    <span>{getSeconds(time4)}</span>
-                </div>
-            </div>)}
-            <div style={{ width: "100%", height: "30px" }}></div>
+                {(val % 2 !== 0) ? ((val < 2) ? (<div>
+                    <div style={{ fontSize: "100px", textAlign: "center" }}>
+                        <span>{parseInt(time1 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time1)}</span>
+                    </div>
+                </div>) : <div>
+                    <div style={{ fontSize: "100px", textAlign: "center" }}>
+                        <span>{parseInt(time3 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time3)}</span>
+                    </div>
+                </div>) : ((val < 3) ? (<div>
+                    <div style={{ fontSize: "100px", textAlign: "center" }}>
+                        <span>{parseInt(time2 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time2)}</span>
+                    </div>
+                </div>) : <div>
+                    <div style={{ fontSize: "100px", textAlign: "center" }}>
+                        <span>{parseInt(time4 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time4)}</span>
+                    </div>
+                </div>)}
+                <div style={{ width: "100%", height: "30px" }}></div>
 
-            {datas.map((item, index) => (
-                item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> <img src={Red}></img></button> : <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}><img src={Blue}></img></button>
-            ))}
-            
-            {/* <button onClick={UpdateTime}>Addtime</button>  justifyContent:"space-between"*/}
-            <div style={{ width: "100%", display: "flex", columnGap:"1.6em", justifyContent:'center'}}>
-                <Box sx={{ width: '20%' }}>
-                    <LinearProgress variant="determinate" value={progress1} />
-                    <LinearProgress variant="determinate" value={progress1} />
-                    
-                </Box>
-                <Box sx={{ width: '20%' }}>
-                    <LinearProgress variant="determinate" value={progress2} />
-                    <LinearProgress variant="determinate" value={progress2} />
-                    
-                </Box>
-                <Box sx={{ width: '20%' }}>
-                    <LinearProgress variant="determinate" value={progress3} />
-                    <LinearProgress variant="determinate" value={progress3} />
-                    
-                </Box>
-                <Box sx={{ width: '20%' }}>
-                    <LinearProgress variant="determinate" value={progress4} />
-                    <LinearProgress variant="determinate" value={progress4} />
-                    
-                </Box>
-
-            </div>
-            
-            </PC>   
-
+                {datas.map((item, index) => (
+                    item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> 
+                    <img src={Red}></img></button> : 
+                    <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}>
+                    <img src={Blue}></img></button>
+                ))}
+                <div style={{ width: "100%", display: "flex", columnGap: "1.6em", justifyContent: 'center' }}>
+                    <Box sx={{ width: '20%' }}>
+                        <LinearProgress variant="determinate" value={progress1} />
+                        <LinearProgress variant="determinate" value={progress1} />
+                    </Box>
+                    <Box sx={{ width: '20%' }}>
+                        <LinearProgress variant="determinate" value={progress2} />
+                        <LinearProgress variant="determinate" value={progress2} />
+                    </Box>
+                    <Box sx={{ width: '20%' }}>
+                        <LinearProgress variant="determinate" value={progress3} />
+                        <LinearProgress variant="determinate" value={progress3} />
+                    </Box>
+                    <Box sx={{ width: '20%' }}>
+                        <LinearProgress variant="determinate" value={progress4} />
+                        <LinearProgress variant="determinate" value={progress4} />
+                    </Box>
+                </div>
+            </PC>
         </div>
-
     );
 }
 
 
 const Main = ({ match, props }) => {
-    // console.log(props.children)
-
     return (
         <>
-
             <Mobile>
                 <Header />
-                <StyledDiv style={{ background: "white" , height:"75vh"}}>
+                <StyledDiv style={{ background: "white", height: "75vh" }}>
                     <Readdata name="" />
                     <div style={{ width: "100%", height: "10px" }}></div>
 
@@ -525,10 +490,9 @@ const Main = ({ match, props }) => {
 
                     <Readdata name="" />
                     <div style={{ width: "100%", height: "60px" }}></div>
-                    
+
                     <Link to={`/QR`}  ><Button >Start</Button></Link>
                 </StyledDiv>
-
             </PC>
         </>
     );
