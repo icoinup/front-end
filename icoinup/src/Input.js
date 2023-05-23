@@ -15,7 +15,7 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
-
+import TextField from '@mui/material/TextField';
 
 
 var RC = ""
@@ -69,10 +69,10 @@ const Selection = () => {
       };
       return (
         <div className="Selections">
-          <FormControl sx={{ m: 1 }} variant="standard">
-              <InputLabel htmlFor="demo-customized-textbox">Student Code</InputLabel> 
-              <BootstrapInput id="demo-customized-textbox" />
-            </FormControl>
+          <div style={{width:"100%",height:"30px" }}></div>
+          <FormControl fullWidth variant="standard">
+              <TextField id="outlined-basic" label="Student Code" variant="outlined" />
+          </FormControl>
           <div style={{width:"100%",height:"10px" }}></div>
           <div>
           <Box sx={{ minWidth: 120 }}>
@@ -109,12 +109,12 @@ const Selection = () => {
           </div>
           <ul>
           
-          <Link to={{pathname:  `/Main/${SelectedRC+SelectedFloor}`, state: { floor: SelectedFloor, RC: SelectedRC}}}><Button>Next</Button></Link>
+          <Link to={{pathname:  `/Main/${SelectedRC+SelectedFloor}`, state: { floor: SelectedFloor, RC: SelectedRC}}}>
+            <Button>Next</Button></Link>
           </ul>
         </div>
       );
 }
-
 
 const Input = (props) => {
 	return (
@@ -137,8 +137,6 @@ const Input = (props) => {
 		</>
 	);
 };
-
-
 
 export {RC, floor}
 

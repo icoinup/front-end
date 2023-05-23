@@ -18,26 +18,16 @@ class QR_Scanner extends Component {
   
   constructor(props) {
     super(props);
-
     this.state = {
       result: "No result",
-      
     };
-
     this.handleError = this.handleError.bind(this);
     this.handleScan = this.handleScan.bind(this);
-    
   }
-  
-
   handleScan = async (data) => {
     
     if (data) {
       console.log(RC+floor)
-      // const navigate = useNavigate();
-      // const onCancel = () =>{
-      //   navigate(-1);
-      // }
       this.setState({
         result: data
       });
@@ -53,8 +43,6 @@ class QR_Scanner extends Component {
                  using: true
                 });
               console.log("Document written with ID: ", );
-              
-              
             } catch (e) {
               console.error("Error adding document: ", e);
             }
