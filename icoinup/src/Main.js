@@ -378,7 +378,67 @@ const Readdata = (props) => {
 
 
     return (
-        <div className="">
+        
+        <div >
+            <Mobile>
+                {(val % 2 !== 0) ? ((val < 2) ? (<div >
+                    <div style={{ fontSize: "60px", textAlign: "center" }}>
+                        <span>{parseInt(time1 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time1)}</span>
+                    </div>
+                </div>) : <div>
+                    <div style={{ fontSize: "60px", textAlign: "center" }}>
+                        <span>{parseInt(time3 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time3)}</span>
+                    </div>
+                </div>) : ((val < 3) ? (<div>
+                    <div style={{ fontSize: "60px", textAlign: "center" }}>
+                        <span>{parseInt(time2 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time2)}</span>
+                    </div>
+                </div>) : <div>
+                    <div style={{ fontSize: "60px", textAlign: "center" }}>
+                        <span>{parseInt(time4 / 60)}</span>
+                        <span> : </span>
+                        <span>{getSeconds(time4)}</span>
+                    </div>
+                </div>)}
+                <div style={{ width: "100%", height: "20px" }}></div>
+                <div style={{display:"flex", columnGap:"0.1em", justifyContent:'center'}}>
+                {datas.map((item, index) => (
+                    item.using ? <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBool(index + 1, e)}> <img src={Red} style={{width:"60%"}}></img></button> : <button key={index} style={{ background: 'transparent', padding: 10, border: 0 }} onClick={(e) => UpdateBoolean(index + 1, e)}><img src={Blue} style={{width:"60%"}}></img></button>
+                ))}
+                </div>
+                {/* <button onClick={UpdateTime}>Addtime</button>  justifyContent:"space-between"*/}
+                <div style={{ width: "100%", display: "flex", columnGap:"2.4em", justifyContent:'center'}}>
+                    <Box sx={{ width: '15%' }}>
+                        <LinearProgress variant="determinate" value={progress1} />
+                        <LinearProgress variant="determinate" value={progress1} />
+                        
+                    </Box>
+                    <Box sx={{ width: '15%' }}>
+                        <LinearProgress variant="determinate" value={progress2} />
+                        <LinearProgress variant="determinate" value={progress2} />
+                        
+                    </Box>
+                    <Box sx={{ width: '15%' }}>
+                        <LinearProgress variant="determinate" value={progress3} />
+                        <LinearProgress variant="determinate" value={progress3} />
+                        
+                    </Box>
+                    <Box sx={{ width: '15%' }}>
+                        <LinearProgress variant="determinate" value={progress4} />
+                        <LinearProgress variant="determinate" value={progress4} />
+                        
+                    </Box>
+
+                </div>
+            
+            </Mobile> 
+            <PC>
             {(val % 2 !== 0) ? ((val < 2) ? (<div>
                 <div style={{ fontSize: "100px", textAlign: "center" }}>
                     <span>{parseInt(time1 / 60)}</span>
@@ -435,7 +495,7 @@ const Readdata = (props) => {
 
             </div>
             
-            
+            </PC>   
 
         </div>
 
@@ -451,8 +511,7 @@ const Main = ({ match, props }) => {
 
             <Mobile>
                 <Header />
-                <StyledDiv style={{ background: "white" }}>
-
+                <StyledDiv style={{ background: "white" , height:"75vh"}}>
                     <Readdata name="" />
                     <div style={{ width: "100%", height: "10px" }}></div>
 
