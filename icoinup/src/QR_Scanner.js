@@ -66,23 +66,27 @@ class QR_Scanner extends Component {
   };
 
   render() {
-    const previewStyle = {
+    const qrContainerStyle = {
       height: 240,
       width: 320,
-    }
+      transform: 'scaleX(-1)' // for mobile version, Horizontal Flip
+    };
+    
     return (
-      <StyledDiv style={{background:"white"}}>
-        <h3>QR코드를 스캔해주세요. (카메라 연동)</h3><br/>
-        <QrReader
-          delay={300}
-          facingMode={"environment"}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          className="qr-scanner-video" 
-          style={previewStyle}
-        />
+      <StyledDiv style={{ background: "white" }}>
+        <h3>QR코드를 스캔해주세요. (카메라 연동)</h3>
+        <br/>
+        <div style={qrContainerStyle}>
+          <QrReader
+            delay={300}
+            facingMode={"environment"}
+            onError={this.handleError}
+            onScan={this.handleScan}
+            className="qr-scanner-video"
+          />
+        </div>
         <br/><br/><br/><br/><br/>
-        <AiFillCamera style={{fontSize: "5em"}}/>
+        <AiFillCamera style={{ fontSize: "5em" }} />
       </StyledDiv>
     );
   }
