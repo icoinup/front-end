@@ -32,16 +32,16 @@ function sleep(sec) {
 
 const Readdata = (props) => {
     const [val, setVal] = useState(1);
-    const [time1, setTime1] = useState(38 * 60); // Remaining time in seconds
-    const [time2, setTime2] = useState(38 * 60); // Remaining time in seconds
-    const [time3, setTime3] = useState(38 * 60); // Remaining time in seconds
-    const [time4, setTime4] = useState(38 * 60); // Remaining time in seconds
+    const [time1, setTime1] = useState(60); // Remaining time in seconds
+    const [time2, setTime2] = useState(60); // Remaining time in seconds
+    const [time3, setTime3] = useState(60); // Remaining time in seconds
+    const [time4, setTime4] = useState(60); // Remaining time in seconds
     const [progress1, setProgress1] = useState(0);
     const [progress2, setProgress2] = useState(0);
     const [progress3, setProgress3] = useState(0);
     const [progress4, setProgress4] = useState(0);
     const [time5, setTime5] = useState(6000 * 60); // Remaining time in seconds
-    const [datas, setDatas] = useState([{ time: 5 * 60, using: false }, { time: 5 * 60, using: false }, { time: 5 * 60, using: false }, { time: 5 * 60, using: false }]);
+    const [datas, setDatas] = useState([{ time: 60, using: false }, { time: 60, using: false }, { time: 60, using: false }, { time: 60, using: false }]);
     var currentusing = [];
 
     var url = window.location.pathname
@@ -67,7 +67,7 @@ const Readdata = (props) => {
             let seconds = Number(new Intl.DateTimeFormat('en-US', { second: '2-digit' }).format(currentTimestamp - datas[i].time))
             hours = hours - 9;
 
-            var totalsec = 38 * 60 - (hours * 3600 + minutes * 60 + seconds)
+            var totalsec = 60 - (hours * 3600 + minutes * 60 + seconds)
 
 
             if (i === 0) {
@@ -177,7 +177,7 @@ const Readdata = (props) => {
             }, 1000);
         }
         else {
-            setTime1(38 * 60)
+            setTime1(60)
         }
 
         return () => {
@@ -193,7 +193,7 @@ const Readdata = (props) => {
             }, 1000);
         }
         else {
-            setTime2(38 * 60)
+            setTime2(60)
         }
         return () => {
             clearInterval(timerId);
@@ -207,7 +207,7 @@ const Readdata = (props) => {
             }, 1000);
         }
         else {
-            setTime3(38 * 60)
+            setTime3(60)
         }
         return () => {
             clearInterval(timerId);
@@ -221,7 +221,7 @@ const Readdata = (props) => {
             }, 1000);
         }
         else {
-            setTime4(38 * 60)
+            setTime4(60)
         }
         return () => {
             clearInterval(timerId);
@@ -239,7 +239,7 @@ const Readdata = (props) => {
         }
         if (time1 === 0) {
             alert("Time OVER!");
-            setTime1(38 * 60);
+            setTime1(60);
             UpdateBool1();
         }
     }, [time1]);
@@ -253,7 +253,7 @@ const Readdata = (props) => {
             alert("Time OVER!");
 
 
-            setTime2(38 * 60);
+            setTime2(60);
             UpdateBool2();
 
         }
@@ -268,7 +268,7 @@ const Readdata = (props) => {
             alert("Time OVER!");
 
 
-            setTime3(38 * 60);
+            setTime3(60);
             UpdateBool3();
 
         }
@@ -283,7 +283,7 @@ const Readdata = (props) => {
             alert("Time OVER!");
 
 
-            setTime4(38 * 60);
+            setTime4(60);
             UpdateBool4();
 
         }
@@ -296,8 +296,8 @@ const Readdata = (props) => {
                     return 100;
                 }
 
-                oldProgress = ((2280 - time1) / 2280);
-                console.log(time1, ((2280 - time1) / 2280))
+                oldProgress = ((60 - time1) / 60);
+                
                 return Math.min(oldProgress * 100, 100);
 
             });
@@ -314,7 +314,7 @@ const Readdata = (props) => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                oldProgress = ((2280 - time2) / 2280);
+                oldProgress = ((60 - time2) / 60);
                 return Math.min(oldProgress * 100, 100);
             });
         }, 500);
@@ -330,7 +330,7 @@ const Readdata = (props) => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                oldProgress = ((2280 - time3) / 2280);
+                oldProgress = ((60 - time3) / 60);
                 return Math.min(oldProgress * 100, 100);
             });
         }, 500);
@@ -346,7 +346,7 @@ const Readdata = (props) => {
                     return 100;
                 }
 
-                oldProgress = ((2280 - time4) / 2280);
+                oldProgress = ((60 - time4) / 60);
                 return Math.min(oldProgress * 100, 100);
             });
         }, 500);
