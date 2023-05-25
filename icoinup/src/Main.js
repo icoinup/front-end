@@ -346,7 +346,7 @@ const Readdata = (props) => {
                     return 100;
                 }
 
-                oldProgress = ((30 - time4) / 30);
+                oldProgress = ((2280 - time4) / 2280);
                 return Math.min(oldProgress * 100, 100);
             });
         }, 500);
